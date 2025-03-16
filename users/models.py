@@ -44,6 +44,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(_("Superuser"), default=False)
     is_active = models.BooleanField(_("Active"), default=True)
 
+    created_at = models.DateTimeField(_("Created At"), auto_now_add=True)
+
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ("first_name",)
 

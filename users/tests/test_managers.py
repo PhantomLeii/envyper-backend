@@ -26,7 +26,7 @@ class TestUserManager(TestCase):
         }
 
     def test_create_user(self):
-        user = self.user_manager.create_user(self.valid_user_data)
+        user = self.user_manager.create_user(**self.valid_user_data)
 
         with self.subTest("User of the correct type"):
             self.assertTrue(isinstance(user, self.user_model))
@@ -56,13 +56,13 @@ class TestUserManager(TestCase):
         )
 
     def test_invalid_create_user(self):
-        with self.assertRaises(ValueError("Email field is required")):
+        with self.assertRaises(ValueError):
             self.user_manager.create_user({**self.valid_user_data, "email": ""})
 
-        with self.assertRaises(ValueError("Password field is required")):
+        with self.assertRaises(ValueError):
             self.user_manager.create_user({**self.valid_user_data, "password": ""})
 
-        with self.assertRaises(ValueError("First Name field is required")):
+        with self.assertRaises(ValueError):
             self.user_manager.create_user({**self.valid_user_data, "first_name": ""})
 
     def test_valid_create_superuser(self):

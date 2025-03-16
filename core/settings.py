@@ -22,7 +22,6 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -37,6 +36,7 @@ except ValueError:
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
 
+
 # Application definition
 DJANGO_APPS = [
     "django.contrib.admin",
@@ -49,7 +49,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = ["rest_framework", "corsheaders"]
 
-LOCAL_APPS = []
+LOCAL_APPS = ["users.apps.UsersConfig"]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -148,3 +148,5 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
     "SIGNING_KEY": JWT_SIGNING_KEY,
 }
+
+AUTH_USER_MODEL = "users.User"

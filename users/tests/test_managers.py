@@ -58,6 +58,9 @@ class TestUserManager(TestCase):
         with self.assertRaises(ValueError("Password field is required")):
             self.user_manager.create_user({**self.valid_user_data, "password": ""})
 
+        with self.assertRaises(ValueError("First Name field is required")):
+            self.user_manager.create_user({**self.valid_user_data, "first_name": ""})
+
     def test_valid_create_superuser(self):
         superuser = self.user_manager.create_superuser(self.valid_superuser_data)
 

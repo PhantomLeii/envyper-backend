@@ -1,0 +1,4 @@
+[tool.coverage.run]
+plugins = [
+    'django_coverage_plugin',
+]

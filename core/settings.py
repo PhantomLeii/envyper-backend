@@ -34,7 +34,7 @@ try:
 except ValueError:
     print("Invalid value for DEBUG set.\nMust be 0 or 1")
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").spilt(",")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
 
 # Application definition
 DJANGO_APPS = [

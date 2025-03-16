@@ -28,6 +28,10 @@ class TestUserManager(TestCase):
     def test_create_user(self):
         user = self.user_manager.create_user(self.valid_user_data)
 
+        with self.subTest("User of the correct type"):
+            self.assertTrue(isinstance(user, self.user_model))
+            self.assertEqual(str(user), self.valid_user_data["email"])
+
         self.assertEqual(
             user.email,
             self.valid_user_data["email"],

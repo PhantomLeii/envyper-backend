@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
             "created_at": {"read_only": True},
         }
 
-    def validate(self, **attrs):
+    def validate(self, attrs):
         """Validate that the Email, Password & First name fields are populated"""
         if not attrs.get("email"):
             raise serializers.ValidationError("Email field is required")

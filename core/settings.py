@@ -49,7 +49,11 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = ["rest_framework", "corsheaders"]
 
-LOCAL_APPS = ["users.apps.UsersConfig", "projects.apps.ProjectsConfig"]
+LOCAL_APPS = [
+    "users.apps.UsersConfig",
+    "projects.apps.ProjectsConfig",
+    "variables.apps.VariablesConfig",
+]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 

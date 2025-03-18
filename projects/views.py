@@ -41,7 +41,6 @@ class ProjectRetrievalMixin:
             return None
 
 
-# TODO: TEST ALL VIEWS
 class ProjectDetailAPIView(APIView, ProjectRetrievalMixin):
     def get(self, request, pk):
         project = self.get_project(pk)
@@ -50,7 +49,6 @@ class ProjectDetailAPIView(APIView, ProjectRetrievalMixin):
                 {"message": "User does not own a project with the given ID"},
                 status.HTTP_404_NOT_FOUND,
             )
-
         serializer = ProjectSerializer(project)
         return Response({"data": serializer.data}, status.HTTP_200_OK)
 
@@ -61,13 +59,11 @@ class ProjectDetailAPIView(APIView, ProjectRetrievalMixin):
                 {"message": "User does not own a project with the given ID"},
                 status.HTTP_404_NOT_FOUND,
             )
-
         serializer = ProjectSerializer(project, data=request.data, partial=True)
         if not serializer.is_valid():
             return Response(
                 {"message": "Provided data is invalid"}, status.HTTP_400_BAD_REQUEST
             )
-
         serializer.save()
         return Response({"data": serializer.data}, status.HTTP_200_OK)
 
@@ -78,6 +74,5 @@ class ProjectDetailAPIView(APIView, ProjectRetrievalMixin):
                 {"message": "User does not own a project with the given ID"},
                 status.HTTP_404_NOT_FOUND,
             )
-
         project.delete()
         return Response({}, status.HTTP_204_NO_CONTENT)

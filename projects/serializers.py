@@ -17,4 +17,8 @@ class ProjectSerializer(serializers.ModelSerializer):
 
         if not attrs.get("name"):
             raise serializers.ValidationError("Name field is required")
+
+        if not attrs.get("creator"):
+            raise serializers.ValidationError("Creator field is required")
+
         return attrs

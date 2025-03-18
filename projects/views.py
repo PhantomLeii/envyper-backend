@@ -8,15 +8,15 @@ from .models import Projects
 class ProjectsAPIView(APIView):
     def get(self, request):
         projects = Projects.objects.filter(creator=request.user)
-        serializer = ProjectSerializer(projects)
+        serializer = ProjectSerializer(projects, many=True)
         return Response({"data": serializer.data}, status.HTTP_200_OK)
 
     def post(self, request):
-        serializer = ProjectSerializer(data={**request.data, "creator": request.user})
+        serializer = ProjectSerializer(
+            data={**request.data, "creator": request.user.id}
+        )
         if not serializer.is_valid():
-            return Response(
-                {"message": "Provided data is invalid"}, status.HTTP_400_BAD_REQUEST
-            )
+            return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
         serializer.save()
         return Response({"data": serializer.data}, status.HTTP_201_CREATED)
 

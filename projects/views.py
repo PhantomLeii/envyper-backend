@@ -35,6 +35,7 @@ class ProjectRetrievalMixin:
             return None
 
 
+# TODO: TEST ALL VIEWS
 class ProjectDetailAPIView(APIView, ProjectRetrievalMixin):
     def get(self, request, pk):
         project = self.get_project(pk)
